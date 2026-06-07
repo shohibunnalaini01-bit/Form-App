@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistem Formulir Pesantren</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <!-- Dekorasi samping kiri -->
+        <div class="login-decor">
+            <div class="decor-pattern"></div>
+            <div class="decor-bg-img"></div>
+            <!-- Logo pattern di background -->
+            <div class="decor-logo-pattern"></div>
+
+            <!-- Strip kiri: Tanggal/Jam saja -->
+            <div class="decor-left-strip">
+                <div class="strip-datetime" id="stripDatetime">MEMUAT...</div>
+            </div>
+
+            <!-- Konten utama: Logo + Judul -->
+            <div class="decor-content">
+                <div class="decor-logo">
+                    <img src="logo.png" alt="Logo">
+                </div>
+                <h1>Sistem Formulir<br>Pesantren</h1>
+                <p>Kelola data santri, cetak formulir, dan kelola dokumen dengan mudah dan aman.</p>
+                <div class="decor-features">
+                    <div class="decor-feat"><i class="fas fa-check-circle"></i> Formulir KK Lengkap</div>
+                    <div class="decor-feat"><i class="fas fa-check-circle"></i> Cetak 3 Surat</div>
+                    <div class="decor-feat"><i class="fas fa-check-circle"></i> Manajemen Data</div>
+                    <div class="decor-feat"><i class="fas fa-check-circle"></i> Role Akses</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form login -->
+        <div class="login-form-side">
+                    <div class="login-form-side">
+                <!-- Header khusus mobile -->
+            <div class="mobile-header">
+                <div class="mobile-datetime" id="mobileDatetime">-</div>
+            </div>
+
+            <div class="login-form-container">
+            <div class="login-form-container">
+                <div class="login-logo">
+                    <div class="logo-circle"><i class="fas fa-user-shield"></i></div>
+                </div>
+                <h2>Selamat Datang</h2>
+                <p class="login-subtitle">Silakan masuk ke akun Anda</p>
+
+                <form id="loginForm" autocomplete="off">
+                    <div class="form-group">
+                        <label for="username"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="username" placeholder="contoh: admin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" placeholder="Masukkan password" required>
+                            <button type="button" class="toggle-pass" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="eyeIcon"></i>
+                            </button>
+                        </div>
+                        <div class="caps-warning" id="capsWarning">
+                            <i class="fas fa-exclamation-triangle"></i> Caps Lock aktif
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <a href="#" class="forgot-link" id="forgotLink">Lupa Password?</a>
+                    </div>
+
+                    <div id="loginError" class="login-error"></div>
+                    <button type="submit" class="btn-login" id="btnLogin">
+                        <span class="btn-text">Masuk</span>
+                        <span class="btn-loader" style="display:none"><i class="fas fa-spinner fa-spin"></i> Memproses...</span>
+                    </button>
+                </form>
+
+                <p class="login-footer">&copy; 2026 Mr. A Data Organizer</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Overlay -->
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-box">
+            <div class="welcome-icon"><i class="fas fa-check-circle"></i></div>
+            <h2 id="welcomeName">Selamat Datang!</h2>
+            <p id="welcomeRole">Admin</p>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,653 @@
+/* ===== VARIABEL ===== */
+:root {
+    --primary: #0D7C66;
+    --primary-light: #2AAF94;
+    --primary-dark: #075A4A;
+    --bg: #FAF8F5;
+    --card: #FFFFFF;
+    --text: #2D2D2D;
+    --text-muted: #7A7A7A;
+    --border: #E8E4DE;
+    --error: #C0392B;
+    --error-bg: #FDECEB;
+    --warning: #E67E22;
+    --warning-bg: #FFF3E0;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    color: var(--text);
+}
+
+.login-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ========================================================
+   DEKORASI SAMPING KIRI (DESKTOP)
+   ======================================================== */
+.login-decor {
+    flex: 1;
+    background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2.5rem 2.5rem 2.5rem 130px;
+}
+
+/* Pattern dot */
+.decor-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image:
+        radial-gradient(circle at 20px 20px, rgba(255,255,255,0.8) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 60px 60px, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 80px 80px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Overlay gambar pesantren */
+.decor-bg-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Garis diagonal */
+.login-decor::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: repeating-linear-gradient(
+        135deg, transparent, transparent 30px,
+        rgba(255,255,255,0.5) 30px, rgba(255,255,255,0.5) 31px
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Logo pattern watermark */
+.decor-logo-pattern {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url('logo.png');
+    background-repeat: repeat;
+    background-size: 120px 120px;
+}
+
+/* ========================================================
+   STRIP KIRI (DESKTOP)
+   ======================================================== */
+.decor-left-strip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.strip-datetime {
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(5px);
+}
+
+.strip-datetime .jam {
+    color: #6EE7A0;
+    font-weight: 800;
+}
+
+/* ========================================================
+   KONTEN UTAMA DEKORASI (DESKTOP)
+   ======================================================== */
+.decor-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    max-width: 340px;
+}
+
+.decor-logo {
+    margin-bottom: 1.5rem;
+}
+
+.decor-logo img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 16px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+}
+
+.decor-content h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+}
+
+.decor-content p {
+    font-size: 0.88rem;
+    opacity: 0.85;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.decor-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.decor-feat {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    opacity: 0.9;
+    padding: 0.45rem 0.85rem;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.decor-feat i {
+    color: #6EE7A0;
+    font-size: 0.8rem;
+}
+
+/* ========================================================
+   FORM SIDE (KANAN - DESKTOP)
+   ======================================================== */
+.login-form-side {
+    flex: 0 0 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--card);
+    position: relative;
+}
+
+.login-form-side::before {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(13,124,102,0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* ========================================================
+   HEADER HIJAU MOBILE (HIDDEN DI DESKTOP)
+   ======================================================== */
+.mobile-green-header {
+    display: none;
+}
+
+.mobile-datetime {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+}
+
+/* ========================================================
+   ANIMASI MASUK
+   ======================================================== */
+.login-form-container {
+    width: 100%;
+    max-width: 340px;
+    animation: slideUp 0.6s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.logo-circle {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    box-shadow: 0 6px 20px rgba(13,124,102,0.3);
+}
+
+.login-form-container h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 0.25rem;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 1.75rem;
+}
+
+/* ========================================================
+   FORM
+   ======================================================== */
+.form-group {
+    margin-bottom: 1.15rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+}
+
+.form-group label i {
+    color: var(--primary);
+    margin-right: 0.3rem;
+    font-size: 0.72rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    transition: all 0.2s;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(13,124,102,0.1);
+}
+
+.form-group input::placeholder {
+    color: #AAA;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 3rem;
+}
+
+.toggle-pass {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.88rem;
+    padding: 0.25rem;
+    transition: color 0.2s;
+}
+
+.toggle-pass:hover {
+    color: var(--primary);
+}
+
+/* Caps Lock warning */
+.caps-warning {
+    display: none;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    color: var(--warning);
+    background: var(--warning-bg);
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    margin-top: 0.35rem;
+}
+
+.caps-warning.show {
+    display: flex;
+}
+
+.caps-warning i {
+    font-size: 0.68rem;
+}
+
+/* Lupa Password */
+.form-options {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.75rem;
+}
+
+.forgot-link {
+    font-size: 0.78rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.forgot-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Error */
+.login-error {
+    background: var(--error-bg);
+    color: var(--error);
+    padding: 0;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    margin-bottom: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+.login-error.show {
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 0.85rem;
+    max-height: 60px;
+    border-color: rgba(192,57,43,0.2);
+}
+
+/* Button */
+.btn-login {
+    width: 100%;
+    padding: 0.8rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 4px 14px rgba(13,124,102,0.3);
+}
+
+.btn-login:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(13,124,102,0.4);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+.btn-login:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.login-footer {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 2rem;
+}
+
+/* ========================================================
+   WELCOME OVERLAY
+   ======================================================== */
+.welcome-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(13,124,102,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.welcome-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.welcome-box {
+    text-align: center;
+    color: white;
+    transform: scale(0.8);
+    transition: transform 0.4s ease;
+}
+
+.welcome-overlay.show .welcome-box {
+    transform: scale(1);
+}
+
+.welcome-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.welcome-box h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+}
+
+.welcome-box p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    text-transform: capitalize;
+}
+
+/* ========================================================
+   TOAST
+   ======================================================== */
+.toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.toast {
+    padding: 0.85rem 1.25rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    animation: toastIn 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 280px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.toast.info {
+    background: #3A6EA5;
+    color: white;
+}
+
+@keyframes toastIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ========================================================
+   RESPONSIVE — TABLET
+   ======================================================== */
+@media (max-width: 900px) {
+    /* Sembunyikan dekorasi desktop */
+    .login-decor {
+        display: none;
+    }
+
+    /* Layout jadi vertikal */
+    .login-wrapper {
+        flex-direction: column;
+    }
+
+    .login-form-side {
+        flex: 1;
+        padding: 0;
+    }
+
+    /* Header hijau full lebar di atas */
+    .mobile-green-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 2.5rem 1.5rem;
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--primary-light));
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Pattern dot di header hijau */
+    .mobile-green-header::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        opacity: 0.06;
+        background-image:
+            radial-gradient(circle at 20px 20px, rgba(255,255,255,0.8) 1.5px, transparent 1.5px),
+            radial-gradient(circle at 60px 60px, rgba(255,255,255,0.5) 1px, transparent 1px);
+        background-size: 80px 80px;
+        pointer-events: none;
+    }
+
+    /* Garis diagonal di header hijau */
+    .mobile-green-header::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        opacity: 0.04;
+        background-image: repeating-linear-gradient(
+            135deg, transparent, transparent 30px,
+            rgba(255,255,255,0.5) 30px, rgba(255,255,255,0.5) 31px
+        );
+        pointer-events: none;
+    }
+
+    /* Jam miring di dalam header hijau */
+    .mobile-datetime {
+        position: relative;
+        z-index: 1;
+        transform: rotate(-3deg);
+        background: rgba(255,255,255,0.12);
+        padding: 0.6rem 1.5rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.15);
+        backdrop-filter: blur(5px);
+    }
+
+    /* Form container */
+    .login-form-container {
+        padding: 2rem 1.5rem;
+        max-width: 400px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* Hilangkan dekorasi form side */
+    .login-form-side::before {
+        display: none;
+    }
+}
+
+/* ========================================================
+   RESPONSIVE — HP KECIL
+   ======================================================== */
+@media (max-width: 480px) {
+    .mobile-green-header {
+        padding: 2rem 1rem;
+    }
+
+    .mobile-datetime {
+        font-size: 0.62rem;
+        letter-spacing: 1px;
+        padding: 0.5rem 1rem;
+        transform: rotate(-2deg);
+    }
+
+    .login-form-container {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .login-form-container h2 {
+        font-size: 1.3rem;
+    }
+
+    .login-subtitle {
+        font-size: 0.82rem;
+    }
+}
